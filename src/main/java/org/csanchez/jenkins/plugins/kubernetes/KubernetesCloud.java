@@ -244,12 +244,12 @@ public class KubernetesCloud extends Cloud {
     }
     
     public boolean isAddMasterProxyEnvVars() {
-    	return this.addMasterProxyEnvVars;
+        return this.addMasterProxyEnvVars;
     }
     
     @DataBoundSetter
     public void setAddMasterProxyEnvVars(boolean addMasterProxyEnvVars) {
-    	this.addMasterProxyEnvVars = addMasterProxyEnvVars;
+        this.addMasterProxyEnvVars = addMasterProxyEnvVars;
     }
 
     public String getNamespace() {
@@ -454,8 +454,9 @@ public class KubernetesCloud extends Cloud {
                     }
                     r.add(PlannedNodeBuilderFactory.createInstance().cloud(this).template(t).label(label).build());
                 }
-                LOGGER.log(Level.FINEST, "Planned Kubernetes agents for template \"{0}\": {1}",
+                LOGGER.log(Level.FINEST, "Planned Kubernetes agents for template \"{0}\": {1}, taking a nap...",
                         new Object[] { t.getDisplayName(), r.size() });
+                Thread.sleep(30000);
                 if (r.size() > 0) {
                     // Already found a matching template
                     return r;
